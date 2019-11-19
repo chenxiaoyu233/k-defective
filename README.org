@@ -24,7 +24,7 @@
   There are 4 solvers : =Base=, =MADEC=, =RDS=, =CPLEX=. You could call any of them using =-a= option.
   Note that =Base= and =MADEC= all implement *MADEC+* which has been described in the paper.
   - =Base= is the first version of implementation, which allows us to control its behavior explictly. e.g. We could use =--noDiam= or =--noColor= when we are using this implementation. This version is more readable. If you want to use *MADEC* instead of *MADEC+*, you could use this implementation and add =--noDiam= =--noColor=.
-  - =MADEC= is a re-implementation of the "Base", which optimizes the running time, but removes all the customizable parts.
+  - =MADEC= is a re-implementation of the =Base=, which optimizes the running time, but removes all the customizable parts.
 
 * Steps for Deployment
  #+BEGIN_SRC bash
