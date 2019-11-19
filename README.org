@@ -1,0 +1,42 @@
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+latex_compiler: xelatex
+* KDefective Command Line Parameter
+   | option    | meaning/type                                        | parameter                 |
+   |-----------+-----------------------------------------------------+---------------------------|
+   | -r        | input file (data file)                              | input file's name (path)  |
+   | -w        | output file (graph file)                            | output file's name (path) |
+   | -l        | log file (answer file)                              | answer file's name (path) |
+   | -O        | Operator Type                                       | solve/generate/compare    |
+   | -p        | prework flag                                        |                           |
+   | -t        | time limit for algorithm                            | time in second            |
+   | -a        | Algorithm Type                                      | Base/MADEC/RDS/IP         |
+   | -D        | DataStructure used by the algorithm                 | Set/Bitset                |
+   | -k        | k in k-defective                                    | an integer                |
+   | --noDiam  | Kill Diameter Reduction in "Base" algo              |                           |
+   | --noColor | Kill Color Reduction in "Base" algo                 |                           |
+   | -n        | number of vertex in the random graph                | an integer                |
+   | -d        | the dense of the edges in random graph              | an float                  |
+   | -h        | help                                                | (not implement yet)       |
+   | -G        | the type of graph the Program Read                  | clq/graph/SNAP            |
+   | -M        | set the maximum size of clique in the graph by hand | an integer                |
+
+* Algorithms
+  There are 4 solvers : =Base=, =MADEC=, =RDS=, =CPLEX=. You could call any of them using =-a= option.
+  /Note that =Base= and =MADEC= all implement *MADEC+* which has been described in the paper./
+  - =Base= is the first version of implementation, which allows us to control its behavior explictly. e.g. We could use =--noDiam= or =--noColor= when we are using this implementation. This version is more readable. If you want to use *MADEC* instead of *MADEC+*, you could use this implementation and add =--noDiam= =--noColor=.
+  - =MADEC= is a re-implementation of the "Base", which optimizes the running time, but removes all the customizable parts.
+
+* Steps for Deployment
+ #+BEGIN_SRC bash
+ cmake .
+ make && make install
+ #+END_SRC
+
+ If you want to compile with the IP solver (CPLEX), you could first set the location of CPLEX in =CMakeLists.txt=, then type:
+ #+BEGIN_SRC bash
+ cmake -DIP_SOLVER=ON .
+ make && make install
+ #+END_SRC
+ 
+ And then you will get the executable file at ./Debug/
+
