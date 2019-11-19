@@ -38,5 +38,4 @@
  make && make install
  #+END_SRC
  
- And then you will get the executable file at ./Debug/
-
+ And then you will get the executable file at =./Debug/=
